@@ -29,7 +29,7 @@ if err := p.Publish(ctx, []byte("test message")); err != nil {
 ```
 logger := log.New(os.Stdout, "PRODUCER : ", log.LstdFlags|log.Lmicroseconds|log.Lshortfile)
 
-p, err := producer.New(url, queueName, logger)
+p, err := producer.New(url, queueName, &log.Logger{}, producer.WithExchange(exchangeName, exchangeKind, exchangeBindingKey))
 if err != nil {
     // ...
 }
